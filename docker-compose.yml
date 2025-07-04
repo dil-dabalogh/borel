@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  borel:
+    build: .
+    image: borel:latest
+    container_name: borel-cli
+    volumes:
+      # Mount current directory for input/output files
+      - .:/workspace
+      # Mount user's home directory for configuration files
+      - ~/.borel:/home/borel/.borel:ro
+    working_dir: /workspace
+    environment:
+      - PYTHONPATH=/app
+    # Override the default command to run borel with arguments
+    command: ["--help"]
+    # Run as interactive shell for development
+    stdin_open: true
+    tty: true 

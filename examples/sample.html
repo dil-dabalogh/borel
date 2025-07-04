@@ -1,0 +1,631 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sample Document</title>
+    <style>
+        /* === Diligent Corporation Style Guide for Borel === */
+
+/* Brand Colors */
+:root {
+  --diligent-red-primary: #EE312E;
+  --diligent-red-secondary: #D3222A;
+  --diligent-red-tertiary: #AF292B;
+}
+
+/* Page Setup */
+@page {
+    size: A4;
+    margin: 2.5cm 2cm 2.5cm 2cm;
+    
+    /* Header with logo */
+    @top-right {
+        content: "";
+        height: 2cm;
+    }
+    
+    /* Footer with company info and page numbers */
+    @bottom-center {
+        content: attr(data-company) " @ " attr(data-year);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 9pt;
+        color: #666;
+        border-top: 1pt solid #ccc;
+        padding-top: 0.2cm;
+    }
+    
+    @bottom-right {
+        content: counter(page);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 9pt;
+        color: #666;
+        border-top: 1pt solid #ccc;
+        padding-top: 0.2cm;
+    }
+}
+
+/* Document Body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12pt;
+    line-height: 1.6;
+    color: #000;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Headers */
+h1 {
+    font-size: 24pt;
+    font-weight: bold;
+    color: var(--diligent-red-primary);
+    margin-top: 2em;
+    margin-bottom: 1em;
+    page-break-after: avoid;
+    border-bottom: 2pt solid var(--diligent-red-primary);
+    padding-bottom: 0.3em;
+}
+
+h2 {
+    font-size: 18pt;
+    font-weight: normal;
+    color: var(--diligent-red-secondary);
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    page-break-after: avoid;
+}
+
+h3 {
+    font-size: 14pt;
+    font-weight: bold;
+    color: var(--diligent-red-tertiary);
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    page-break-after: avoid;
+}
+
+h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12pt;
+    font-weight: bold;
+    color: var(--diligent-red-tertiary);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    page-break-after: avoid;
+}
+
+/* Paragraphs */
+p {
+    font-size: 12pt;
+    margin-bottom: 1em;
+    text-align: justify;
+    text-indent: 0;
+}
+
+/* Lists */
+ul {
+    list-style-type: disc;
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+ol {
+    list-style-type: decimal;
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+li {
+    margin-bottom: 0.5em;
+    line-height: 1.5;
+}
+
+/* Links */
+a {
+    color: var(--diligent-red-primary);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--diligent-red-secondary);
+}
+
+/* Title Page */
+.title-page {
+    text-align: center;
+    page-break-after: always;
+    margin-top: 4em;
+    counter-reset: page 0;
+}
+
+/* Start page numbering after title page */
+.title-page + * {
+    counter-increment: page;
+}
+
+.title-page h1 {
+    font-size: 36pt;
+    font-weight: bold;
+    color: var(--diligent-red-primary);
+    margin-top: 0;
+    margin-bottom: 1em;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.title-page .subtitle {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18pt;
+    color: var(--diligent-red-secondary);
+    margin-bottom: 3em;
+    font-style: italic;
+}
+
+.title-page .author {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14pt;
+    color: var(--diligent-red-tertiary);
+    margin-bottom: 1em;
+}
+
+.title-page .date {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12pt;
+    color: #666;
+    margin-bottom: 2em;
+}
+
+/* Letterhead */
+.letterhead {
+    position: fixed;
+    top: 1cm;
+    right: 1cm;
+    width: 3cm;
+    height: auto;
+    z-index: 1000;
+}
+
+/* Page Breaks */
+.page-break {
+    page-break-before: always;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    font-size: 11pt;
+}
+
+th, td {
+    border: 1pt solid #ddd;
+    padding: 0.5em;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: var(--diligent-red-primary);
+}
+
+/* Blockquotes */
+blockquote {
+    margin: 1em 0;
+    padding: 1em;
+    border-left: 4pt solid var(--diligent-red-primary);
+    background-color: #f8f9fa;
+    font-style: italic;
+}
+
+blockquote p {
+    margin: 0;
+}
+
+/* Code */
+code {
+    font-family: 'Courier New', monospace;
+    background-color: #f8f9fa;
+    padding: 0.1em 0.3em;
+    border-radius: 3pt;
+    font-size: 11pt;
+}
+
+pre {
+    font-family: 'Courier New', monospace;
+    background-color: #f8f9fa;
+    padding: 1em;
+    border: 1pt solid #ddd;
+    border-radius: 5pt;
+    overflow-x: auto;
+    margin: 1em 0;
+    font-size: 11pt;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em auto;
+}
+
+/* Horizontal Rule */
+hr {
+    border: none;
+    border-top: 1pt solid var(--diligent-red-primary);
+    margin: 2em 0;
+}
+
+/* Footer */
+footer {
+    font-size: 0.875em;
+    color: #666;
+    text-align: center;
+    margin-top: 3em;
+}
+
+/* Print-specific adjustments */
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+    
+    .page-break {
+        page-break-before: always;
+    }
+    
+    h1, h2, h3, h4 {
+        page-break-after: avoid;
+    }
+    
+    p, blockquote, table, pre {
+        page-break-inside: avoid;
+    }
+} 
+    </style>
+</head>
+<body data-company="Acme Corporation" data-year="2024-01-15">
+    <div class="title-page"><h1>Sample Document</h1><div class="subtitle">A demonstration of Borel functionality</div><div class="author">John Doe</div><div class="date">2024-01-15</div></div>
+    
+    
+    <img src="examples/test-logo.svg" alt="Company Logo" class="letterhead">
+    
+    
+    <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>-</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<h1 id="introduction">Introduction</h1>
+<p>This is a sample document that demonstrates the capabilities of the Borel markdown to PDF converter. The document includes various markdown elements and shows how page breaks work.</p>
+<h2 id="features-demonstrated">Features Demonstrated</h2>
+<ul>
+<li><strong>Title page generation</strong> with metadata</li>
+<li><strong>Page breaks</strong> using <code>&lt;div class="page-break"&gt;&lt;/div&gt;</code> tokens</li>
+<li><strong>Company branding</strong> with logo and footer</li>
+<li><strong>Professional formatting</strong> with proper typography</li>
+</ul>
+<h3 id="markdown-elements">Markdown Elements</h3>
+<p>This document includes:</p>
+<ol type="1">
+<li><strong>Headers</strong> of different levels</li>
+<li><strong>Bold and italic</strong> text formatting</li>
+<li><strong>Lists</strong> (both ordered and unordered)</li>
+<li><strong>Page breaks</strong> for proper document structure</li>
+</ol>
+<div class="page-break">
+
+</div>
+<h1 id="second-page-content">Second Page Content</h1>
+<p>This content appears on the second page due to the <code>&lt;div class="page-break"&gt;&lt;/div&gt;</code> token above.</p>
+<h2 id="lists-example">Lists Example</h2>
+<h3 id="unordered-list">Unordered List</h3>
+<ul>
+<li>First item</li>
+<li>Second item with <strong>bold text</strong></li>
+<li>Third item with <em>italic text</em></li>
+<li>Fourth item</li>
+</ul>
+<h3 id="ordered-list">Ordered List</h3>
+<ol type="1">
+<li>First numbered item</li>
+<li>Second numbered item</li>
+<li>Third numbered item with a <a href="https://example.com">link</a></li>
+</ol>
+<h2 id="code-and-technical-content">Code and Technical Content</h2>
+<p>Here’s an example of inline <code>code</code> and a code block:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> hello_world():</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">&quot;Hello, Borel!&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">&quot;PDF generated successfully&quot;</span></span></code></pre></div>
+<div class="page-break">
+
+</div>
+<h1 id="third-page---advanced-features">Third Page - Advanced Features</h1>
+<h2 id="tables">Tables</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Markdown Support</td>
+<td>Full markdown syntax</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Page Breaks</td>
+<td></td>
+<td>✅</td>
+</tr>
+<tr class="odd">
+<td>Company Branding</td>
+<td>Logo and footer</td>
+<td>✅</td>
+</tr>
+<tr class="even">
+<td>Custom CSS</td>
+<td>Styling flexibility</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<h2 id="blockquotes">Blockquotes</h2>
+<blockquote>
+<p>This is a blockquote that demonstrates how Borel handles different markdown elements.</p>
+<p>It can span multiple lines and include <strong>formatting</strong>.</p>
+</blockquote>
+<h2 id="links-and-references">Links and References</h2>
+<ul>
+<li><a href="https://github.com/your-org/borel">Borel Documentation</a></li>
+<li><a href="https://www.markdownguide.org/">Markdown Guide</a></li>
+<li><a href="https://pandoc.org/">Pandoc Documentation</a></li>
+</ul>
+<div class="page-break">
+
+</div>
+<h1 id="conclusion">Conclusion</h1>
+<p>This sample document demonstrates the key features of Borel:</p>
+<ol type="1">
+<li><strong>Professional formatting</strong> with proper page layout</li>
+<li><strong>Company branding</strong> integration</li>
+<li><strong>Flexible markdown support</strong></li>
+<li><strong>Easy page break control</strong></li>
+</ol>
+<p>The generated PDF will include: - A title page with document metadata - Company logo in the upper right corner (except title page) - Company name and year in the footer - Proper page numbering - Professional typography and spacing</p>
+<p>Thank you for using Borel!</p>
+</body>
+</html>
+
+</body>
+</html>

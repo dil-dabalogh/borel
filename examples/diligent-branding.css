@@ -1,0 +1,287 @@
+/* === Diligent Corporation Style Guide for Borel === */
+
+/* Brand Colors */
+:root {
+  --diligent-red-primary: #EE312E;
+  --diligent-red-secondary: #D3222A;
+  --diligent-red-tertiary: #AF292B;
+}
+
+/* Page Setup */
+@page {
+    size: A4;
+    margin: 2.5cm 2cm 2.5cm 2cm;
+    
+    /* Header with logo */
+    @top-right {
+        content: "";
+        height: 2cm;
+    }
+    
+    /* Footer with company info and page numbers */
+    @bottom-center {
+        content: attr(data-company) " @ " attr(data-year);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 9pt;
+        color: #666;
+        border-top: 1pt solid #ccc;
+        padding-top: 0.2cm;
+    }
+    
+    @bottom-right {
+        content: counter(page);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 9pt;
+        color: #666;
+        border-top: 1pt solid #ccc;
+        padding-top: 0.2cm;
+    }
+}
+
+/* Document Body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12pt;
+    line-height: 1.6;
+    color: #000;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Headers */
+h1 {
+    font-size: 24pt;
+    font-weight: bold;
+    color: var(--diligent-red-primary);
+    margin-top: 2em;
+    margin-bottom: 1em;
+    page-break-after: avoid;
+    border-bottom: 2pt solid var(--diligent-red-primary);
+    padding-bottom: 0.3em;
+}
+
+h2 {
+    font-size: 18pt;
+    font-weight: normal;
+    color: var(--diligent-red-secondary);
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    page-break-after: avoid;
+}
+
+h3 {
+    font-size: 14pt;
+    font-weight: bold;
+    color: var(--diligent-red-tertiary);
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    page-break-after: avoid;
+}
+
+h4 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12pt;
+    font-weight: bold;
+    color: var(--diligent-red-tertiary);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    page-break-after: avoid;
+}
+
+/* Paragraphs */
+p {
+    font-size: 12pt;
+    margin-bottom: 1em;
+    text-align: justify;
+    text-indent: 0;
+}
+
+/* Lists */
+ul {
+    list-style-type: disc;
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+ol {
+    list-style-type: decimal;
+    margin-bottom: 1em;
+    padding-left: 2em;
+}
+
+li {
+    margin-bottom: 0.5em;
+    line-height: 1.5;
+}
+
+/* Links */
+a {
+    color: var(--diligent-red-primary);
+    text-decoration: underline;
+}
+
+a:hover {
+    color: var(--diligent-red-secondary);
+}
+
+/* Title Page */
+.title-page {
+    text-align: center;
+    page-break-after: always;
+    margin-top: 4em;
+    counter-reset: page 0;
+}
+
+/* Start page numbering after title page */
+.title-page + * {
+    counter-increment: page;
+}
+
+.title-page h1 {
+    font-size: 36pt;
+    font-weight: bold;
+    color: var(--diligent-red-primary);
+    margin-top: 0;
+    margin-bottom: 1em;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.title-page .subtitle {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 18pt;
+    color: var(--diligent-red-secondary);
+    margin-bottom: 3em;
+    font-style: italic;
+}
+
+.title-page .author {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14pt;
+    color: var(--diligent-red-tertiary);
+    margin-bottom: 1em;
+}
+
+.title-page .date {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12pt;
+    color: #666;
+    margin-bottom: 2em;
+}
+
+/* Letterhead */
+.letterhead {
+    position: fixed;
+    top: 1cm;
+    right: 1cm;
+    width: 3cm;
+    height: auto;
+    z-index: 1000;
+}
+
+/* Page Breaks */
+.page-break {
+    page-break-before: always;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0;
+    font-size: 11pt;
+}
+
+th, td {
+    border: 1pt solid #ddd;
+    padding: 0.5em;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    color: var(--diligent-red-primary);
+}
+
+/* Blockquotes */
+blockquote {
+    margin: 1em 0;
+    padding: 1em;
+    border-left: 4pt solid var(--diligent-red-primary);
+    background-color: #f8f9fa;
+    font-style: italic;
+}
+
+blockquote p {
+    margin: 0;
+}
+
+/* Code */
+code {
+    font-family: 'Courier New', monospace;
+    background-color: #f8f9fa;
+    padding: 0.1em 0.3em;
+    border-radius: 3pt;
+    font-size: 11pt;
+}
+
+pre {
+    font-family: 'Courier New', monospace;
+    background-color: #f8f9fa;
+    padding: 1em;
+    border: 1pt solid #ddd;
+    border-radius: 5pt;
+    overflow-x: auto;
+    margin: 1em 0;
+    font-size: 11pt;
+}
+
+pre code {
+    background-color: transparent;
+    padding: 0;
+}
+
+/* Images */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 1em auto;
+}
+
+/* Horizontal Rule */
+hr {
+    border: none;
+    border-top: 1pt solid var(--diligent-red-primary);
+    margin: 2em 0;
+}
+
+/* Footer */
+footer {
+    font-size: 0.875em;
+    color: #666;
+    text-align: center;
+    margin-top: 3em;
+}
+
+/* Print-specific adjustments */
+@media print {
+    body {
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+    }
+    
+    .page-break {
+        page-break-before: always;
+    }
+    
+    h1, h2, h3, h4 {
+        page-break-after: avoid;
+    }
+    
+    p, blockquote, table, pre {
+        page-break-inside: avoid;
+    }
+} 

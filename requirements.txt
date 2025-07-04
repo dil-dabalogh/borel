@@ -1,0 +1,6 @@
+click>=8.0.0
+pypandoc>=1.11
+weasyprint>=60.0
+jinja2>=3.0.0
+pyyaml>=6.0
+pathlib2>=2.3.0; python_version < "3.4" 

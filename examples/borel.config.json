@@ -1,0 +1,7 @@
+{
+  "css_file": "examples/diligent-branding.css",
+  "logo_file": "examples/test-logo.svg",
+  "company_name": "Diligent Corporation",
+  "default_author": "Diligent Team",
+  "output_dir": "."
+} 
