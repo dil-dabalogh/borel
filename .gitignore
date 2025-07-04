@@ -7,14 +7,6 @@ __pycache__/
 borel/__pycache__/
 *.pyc
 
-# Test/debug scripts
-simple_test.py
-test_fixes.py
-test_logo.py
-test_docker.py
-test_installation.py
-debug_css.py
-
 # Generated files
 examples/sample.html
 examples/sample.pdf
