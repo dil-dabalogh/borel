@@ -159,7 +159,7 @@ Then use tab completion: `borel <TAB>`
 Run the test script to check your installation:
 
 ```bash
-python test_installation.py
+python tests/test_installation.py
 ```
 
 This will verify all dependencies are properly installed. 

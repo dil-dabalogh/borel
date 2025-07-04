@@ -76,7 +76,7 @@ pip install .
 Run the test script to verify everything is working:
 
 ```bash
-python test_installation.py
+python tests/test_installation.py
 ```
 
 You should see all tests passing with ✅ marks.
@@ -187,7 +187,7 @@ pip install -r requirements.txt
 
 If you continue to have issues:
 
-1. Check the test script output: `python test_installation.py`
+1. Check the test script output: `python tests/test_installation.py`
 2. Verify your Python version: `python --version`
 3. Check if all dependencies are installed: `pip list`
 4. Look for error messages in the console output

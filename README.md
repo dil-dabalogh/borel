@@ -171,6 +171,9 @@ borel/
 
 ```bash
 python -m pytest tests/
+# Or run a specific test
+python tests/test_logo.py
+python tests/test_installation.py
 ```
 
 ### Building Distribution
